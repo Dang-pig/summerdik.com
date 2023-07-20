@@ -10,65 +10,203 @@
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.png">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Home</title>
+    <title>Vacations</title>
 </head>
 
 <style>
     body {
-        background-color: grey;
+        background-color: black;
     }
 
-    #scrolling-text {
-        color: rgb(255, 255, 255);
-        text-shadow: 0 0 10px black;
+    p.fancy {
+        color: white;
+        font-size: 5vw;
+        font-family: "Rubik", sans-serif;
+        margin-right: 100px;
+        margin-left: 100px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-transform: uppercase;
     }
 
-    a {
-        font-size: 22px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-weight: 500;
-        text-decoration: none;
+    ::-webkit-scrollbar {
+        width: 10px;
     }
 
-    h3 {
-        color: rgb(255, 255, 255);
-        text-shadow: 0 0 10px black;
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
     }
 
-    .preview-list {
-        margin-left: 40px;
-        margin-right: 40px;
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    .line {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .word {
+        transition-duration: 0.3s;
+    }
+
+    .fancy:hover {
+        color: cornflowerblue;
+    }
+
+    #text:has(.fancy:hover) .word:not(.fancy:hover) {
+        opacity: 0.2;
+    }
+
+    .fancy>.letter {
+        display: inline-block;
+        transition: transform 350ms ease;
+    }
+
+    .fancy:hover>.letter:nth-child(1) {
+        transition-duration: 500ms;
+        transform: translate(-80%, 60%) rotate(8deg);
+    }
+
+    .fancy:hover>.letter:nth-child(2) {
+        transition-duration: 500ms;
+        transform: translate(-50%, -30%) rotate(-4deg);
+    }
+
+    .fancy:hover>.letter:nth-child(3) {
+        transition-duration: 500ms;
+        transform: translate(-50%, 30%) rotate(3deg);
+    }
+
+    .fancy:hover>.letter:nth-child(4) {
+        transition-duration: 500ms;
+        transform: translate(-75%, 60%) rotate(-5deg);
+    }
+
+    .fancy:hover>.letter:nth-child(5) {
+        transition-duration: 500ms;
+        transform: translate(-20%, 10%) rotate(-10deg);
+    }
+
+    .fancy:hover>.letter:nth-child(6) {
+        transition-duration: 500ms;
+        transform: translate(0%, 60%) rotate(2deg);
+    }
+
+    .fancy:hover>.letter:nth-child(7) {
+        transition-duration: 500ms;
+        transform: translate(10%, -10%) rotate(-9deg);
+    }
+
+    .fancy:hover>.letter:nth-child(8) {
+        transition-duration: 500ms;
+        transform: translate(-20%, 20%) rotate(8deg);
+    }
+
+    .fancy:hover>.letter:nth-child(9) {
+        transition-duration: 500ms;
+        transform: translate(0%, -40%) rotate(-2deg);
+    }
+
+    .fancy:hover>.letter:nth-child(10) {
+        transition-duration: 500ms;
+        transform: translate(0%, 15%) rotate(10deg);
+    }
+
+    .fancy:hover>.letter:nth-child(11) {
+        transition-duration: 500ms;
+        transform: translate(10%, -30%) rotate(1deg);
+    }
+
+    .fancy:hover>.letter:nth-child(12) {
+        transition-duration: 500ms;
+        transform: translate(15%, -35%) rotate(-9deg);
+    }
+
+    .fancy:hover>.letter:nth-child(13) {
+        transition-duration: 500ms;
+        transform: translate(50%, 5%) rotate(699deg);
+    }
+
+    .fancy:hover>.letter:nth-child(14) {
+        transition-duration: 500ms;
+        transform: translate(70%, 10%) rotate(696deg);
+    }
+
+    .fancy:hover>.letter:nth-child(15) {
+        transition-duration: 500ms;
+        transform: translate(120%, 20%) rotate(669deg);
     }
 </style>
 
 <body>
+    <div id="loading-screen"
+        style="position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 9999; background: white;">
+        <div class="loading">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
     <header class="header">
-        <div class="logo">Home</div>
+        <div class="logo"><img src="logo.png" alt="logo" class="icon" style="cursor: pointer;"
+                onclick="window.location='home.html'"><a href="home.html"
+                style="color: black; text-decoration: none; margin-left: 5px; margin-top: -10px;">Home</a></div>
         <nav class="nav-links">
-            <a href="#">Vacations</a>
-            <a href="#">Activities</a>
-            <a href="#">Blogs</a>
+            <a href="vacations.html">Vacations</a>
+            <a href="activities.html">Activities</a>
+            <a href="blogs.html">Blogs</a>
         </nav>
     </header>
 
-    <div class="container" id="container">
-        <h1 align="center" id="scrolling-text" style="font-size: 100px;">Hmmge</h1>
-        <h3 align="center" id="titledes" style="font-size: 30px;"></h3>
+    <div class="container main-content" id="main-content">
+        <div id="text">
+            <p id="chan1" class="fancy word">this</p>
+            <p id="chan2" class="fancy word">feature</p>
+            <p id="chan3" class="fancy word">is</p>
+            <p id="chan4" class="fancy word">currently</p>
+            <p id="chan5" class="fancy word">being</p>
+            <p id="chan6" class="fancy word">developed</p>
+        </div>
     </div>
+
+    <footer class="footer" style="background-color: #f1f1f1; padding: 20px; margin-top: 100px;">
+        <p id="owner">Code by dangheo</p>
+        <p id="owner">Ideas and contents by dangheo and Hung6A</p>
+        <p id="email">Email: dangheo - dangheo1907buns@gmail.com &nbsp; &nbsp; &nbsp; &nbsp; hung6A -
+            manhhungha369@gmail.com</p>
+        <p id="greeting">Have a nice holiday!</p>
+        <p>Our website is a work in progress, still under development, so there might be some bugs. Rest assured,
+            we're working hard to make it "perfecto"!</p>
+    </footer>
 </body>
 
 <script>
-
-    $.ajax({
-        url: 'home.html',
-        type: 'GET',
-        success: function (data) {
-            // Replace body content with new content
-            $('body').html($(data).find('body').html());
-        }
-    });
+    const enhance = (id) => {
+        const ele = document.getElementById(id), text = ele.innerText.split("");
+        ele.innerText = "";
+        text.forEach(letter => {
+            const span = document.createElement("span");
+            span.className = "letter";
+            span.innerText = letter;
+            ele.appendChild(span);
+        });
+    }
+    enhance("chan1");
+    enhance("chan2");
+    enhance("chan3");
+    enhance("chan4");
+    enhance("chan5");
+    enhance("chan6");
 </script>
+
+<script src="script.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
     integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"

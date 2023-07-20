@@ -1,3 +1,7 @@
+body {
+    background-color: lightgrey;
+}
+
 .loading {
     position: absolute;
     top: 50%;
@@ -11,8 +15,9 @@
 .dot {
     width: 20px;
     height: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
     background: black;
-    border-radius: 50%;
     animation: jump 1s infinite;
 }
 
@@ -117,12 +122,12 @@
 }
 
 .footer {
-    margin-left: -120px;
-    margin-right: -120px;
+    margin-left: -50px;
+    margin-right: 0px;
 }
 
 .footer>p {
-    margin-left: 50px;
+    margin-left: 120px;
 }
 
 .icon {
@@ -142,11 +147,33 @@ a {
     text-decoration: none;
 }
 
-body {
-    background-color: lightgrey;
-}
+
 
 h3 {
     color: rgb(255, 255, 255);
     text-shadow: 0 0 10px black;
+}
+
+.list-group {
+    border-radius: 3mm;
+}
+
+.list-group>li {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: ease 0.2s;
+}
+
+.list-group>li:hover {
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 10px;
+}
+
+.blog-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 3mm;
+    padding: 50px;
 }
