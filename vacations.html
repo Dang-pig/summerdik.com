@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.png">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Vacations</title>
+</head>
+
+<style>
+    .preview-list {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    .card {
+        margin-top: 20px;
+        width: 350px;
+        height: 450px;
+        overflow: hidden;
+        transition: ease 0.2s;
+    }
+
+    .card:hover {
+        box-shadow: 0 0 10px;
+    }
+
+    .card-img-left {
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 100%;
+        border-top-left-radius: var(--bs-card-inner-border-radius);
+        border-bottom-left-radius: var(--bs-card-inner-border-radius);
+        transition: transform .2s;
+    }
+
+    .card-img-top-right {
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 100%;
+        border-top-right-radius: var(--bs-card-inner-border-radius);
+        transition: transform .2s;
+    }
+
+    .card-img-bottom-right {
+        object-fit: cover;
+        object-position: center;
+        width: 100%;
+        height: 100%;
+        border-bottom-right-radius: var(--bs-card-inner-border-radius);
+        transition: transform .2s;
+    }
+
+    .img-wrapper {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+    }
+
+    .card-img-in-wrapper {
+        transition: transform .2s;
+        width: 100%;
+        height: 100%;
+    }
+
+    .img-wrapper:hover .card-img-in-wrapper:not(.zoomed) {
+        transform: scale(1.2);
+    }
+
+    .description {
+        font-weight: 600;
+        text-indent: 5px;
+        text-align: justify;
+    }
+
+    .zoomed {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 60vw;
+        height: auto;
+        object-fit: cover;
+        transform: translate(-50%, -50%);
+        z-index: 6969;
+        border-radius: var(--bs-card-inner-border-radius);
+    }
+
+    #overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 696;
+        display: none;
+    }
+
+    .blur {
+        filter: blur(15px);
+    }
+</style>
+
+<body>
+    <div id="loading-screen"
+        style="position: fixed; left: 0; top: 0; width: 100%; height: 100%; z-index: 9999; background: white;">
+        <div class="loading">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+    <header class="header">
+        <div class="logo"><img src="logo.png" alt="logo" class="icon" style="cursor: pointer;"
+                onclick="window.location='home.html'"><a href="home.html"
+                style="color: black; text-decoration: none; margin-left: 5px; margin-top: -10px;">Home</a></div>
+        <nav class="nav-links">
+            <a href="vacations.html">Vacations</a>
+            <a href="activities.html">Activities</a>
+            <a href="blogs.html">Blogs</a>
+        </nav>
+    </header>
+
+    <div class="container main-content" id="main-content">
+        <div id="overlay"></div>
+        <div class="row mx-auto">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-md-6">
+                            <div class="img-wrapper" style="
+                            border-top-left-radius: var(--bs-card-inner-border-radius);
+                            border-bottom-left-radius: var(--bs-card-inner-border-radius);">
+                                <img src="images/halongbay1.jpg" class="card-img-in-wrapper card-img-left zoomable"
+                                    style="border-top-left-radius: var(--bs-card-inner-border-radius);"
+                                    alt="Ha Long Bay - Vietnam - 1">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row g-0">
+                                <div class="col-md-12">
+                                    <div class="img-wrapper" style="
+                                    border-top-right-radius: var(--bs-card-inner-border-radius);">
+                                        <img src="images/halongbay2.jpg"
+                                            class="card-img-in-wrapper card-img-top-right zoomable"
+                                            alt="Ha Long Bay - Vietnam - 2">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="img-wrapper" style="
+                                    border-bottom-right-radius: var(--bs-card-inner-border-radius);">
+                                        <img src="images/halongbay3.jpg"
+                                            class="card-img-in-wrapper card-img-bottom-right zoomable"
+                                            alt="Ha Long Bay - Vietnam - 3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Ha Long Bay</h5>
+                        <p class="location">Ha Long city, Vietnam</p>
+                        <p class="description">Here you can experience very diverse natural landscape, varying from long
+                            sandy beach to thousand-year-old-lime karst.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-md-6">
+                            <div class="img-wrapper" style="
+                            border-top-left-radius: var(--bs-card-inner-border-radius);
+                            border-bottom-left-radius: var(--bs-card-inner-border-radius);">
+                                <img src="images/ilulissat1.jpg" class="card-img-in-wrapper card-img-left zoomable"
+                                    style="border-top-left-radius: var(--bs-card-inner-border-radius);"
+                                    alt="Ilulissat - Greenland - 1">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row g-0">
+                                <div class="col-md-12">
+                                    <div class="img-wrapper" style="
+                                    border-top-right-radius: var(--bs-card-inner-border-radius);">
+                                        <img src="images/ilulissat2.jpg"
+                                            class="card-img-in-wrapper card-img-top-right zoomable"
+                                            alt="Ilulissat - Greenland - 2">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="img-wrapper" style="
+                                    border-bottom-right-radius: var(--bs-card-inner-border-radius);">
+                                        <img src="images/ilulissat3.jpg"
+                                            class="card-img-in-wrapper card-img-bottom-right zoomable"
+                                            alt="Ilulissat - Greenland - 3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Ilulissat</h5>
+                        <p class="location">Greenland</p>
+                        <p class="description">Ilulissat is home to the UNESCO listed Ilulissat Icefjord, where whale
+                            blows or sled dog paws echo off icebergs larger than your imagination.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-md-6">
+                            <div class="img-wrapper" style="
+                            border-top-left-radius: var(--bs-card-inner-border-radius);
+                            border-bottom-left-radius: var(--bs-card-inner-border-radius);">
+                                <img src="images/london1.jpg" class="card-img-in-wrapper card-img-left zoomable"
+                                    style="border-top-left-radius: var(--bs-card-inner-border-radius);"
+                                    alt="London - England - 1">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row g-0">
+                                <div class="col-md-12">
+                                    <div class="img-wrapper" style="
+                                    border-top-right-radius: var(--bs-card-inner-border-radius);">
+                                        <img src="images/london2.jpg"
+                                            class="card-img-in-wrapper card-img-top-right zoomable"
+                                            alt="London - England - 2">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="img-wrapper" style="
+                                    border-bottom-right-radius: var(--bs-card-inner-border-radius);">
+                                        <img src="images/london3.jpg"
+                                            class="card-img-in-wrapper card-img-bottom-right zoomable"
+                                            alt="London - England - 3">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">London</h5>
+                        <p class="location">England</p>
+                        <p class="description">Pack your shades and get ready to rock your summer wardrobe. Sunny days
+                            are coming and it's time to get planning!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer" style="background-color: #f1f1f1; padding: 20px; margin-top: 100px;">
+            <p id="owner">Code by dangheo</p>
+            <p id="owner">Ideas and contents by dangheo and Hung6A</p>
+            <p id="email">Email: dangheo - dangheo1907buns@gmail.com &nbsp; &nbsp; &nbsp; &nbsp; hung6A -
+                manhhungha369@gmail.com</p>
+            <p id="greeting">Have a nice holiday!</p>
+        </footer>
+</body>
+
+<script>
+    document.querySelectorAll('.zoomable').forEach(wrapper => {
+        wrapper.addEventListener('click', function (event) {
+            event.stopPropagation();
+            this.classList.add('zoomed');
+            document.getElementById('overlay').style.display = 'block';
+        });
+    });
+
+    document.getElementById('overlay').addEventListener('click', function () {
+        document.querySelectorAll('.zoomed').forEach(wrapper => {
+            wrapper.classList.remove('zoomed');
+        });
+        this.style.display = 'none';
+    });
+</script>
+
+<script src="script.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+    integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+    integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+    crossorigin="anonymous"></script>
+
+</html>
