@@ -31,6 +31,42 @@
     ::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
+
+    .content {
+        font-size: 20px;
+    }
+
+    .content-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+        height: auto;
+        border-radius: 3mm;
+    }
+
+    .img-wrapper {
+        border-radius: 3mm;
+        overflow: hidden;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: fit-content;
+        height: auto;
+    }
+
+    .card-img-in-wrapper {
+        transition: transform .2s;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .img-wrapper:hover .card-img-in-wrapper:not(.zoomed) {
+        transform: scale(1.2);
+    }
+
+    .blur {
+        filter: blur(10px);
+    }
 </style>
 
 <body>
@@ -55,10 +91,16 @@
         </nav>
     </header>
 
+    <button onclick="window.location.href='vacations.html'"
+        style="position: fixed; top: 100px; left: 20px; font-size: 10px;" class="btn btn-primary">Vacations</button>
     <div class="container main-content" id="main-content">
-        <ul class="list-group" id="blog-list">
-            <!-- Blog posts will be inserted here -->
-        </ul>
+        <div id="overlay"></div>
+        <div class="detail-container">
+            <h1 id="place-title"></h1>
+            <p id="places-description"></p>
+            <h5 align="center">_____</h5>
+            <div id="content" class="content"></div>
+        </div>
     </div>
 
     <footer class="footer" style="background-color: #f1f1f1; padding: 20px; margin-top: 100px;">
@@ -72,9 +114,49 @@
     </footer>
 </body>
 
-<script src="blogs.js"></script>
-
+<script src="vacations.js"></script>
 <script>
+    window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+
+        if (!id) {
+            window.location.href = 'vacations.html'
+        }
+
+        const place = places.find(place => place.id == id);
+        if (place) {
+            document.getElementById('place-title').textContent = place.title;
+            document.getElementById('places-description').textContent = place.description;
+
+            // Split the content by line breaks and create a new <p> tag for each line
+            const contentLines = place.content.split('\n');
+            const contentContainer = document.getElementById('content');
+            contentLines.forEach(line => {
+                const p = document.createElement('p');
+                p.innerHTML = line;
+                p.classList.add("detail-content-paragragh")
+                contentContainer.appendChild(p);
+            });
+            document.querySelectorAll('.zoomable').forEach(wrapper => {
+                wrapper.addEventListener('click', function (event) {
+                    event.stopPropagation();
+                    this.classList.add('zoomed');
+                    document.getElementById('overlay').style.display = 'block';
+                });
+            });
+
+            document.getElementById('overlay').addEventListener('click', function () {
+                document.querySelectorAll('.zoomed').forEach(wrapper => {
+                    wrapper.classList.remove('zoomed');
+                });
+                this.style.display = 'none';
+            });
+        }
+        else {
+            window.location = "404.html";
+        }
+    }
 </script>
 
 <script src="script.js"></script>

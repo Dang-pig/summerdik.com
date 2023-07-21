@@ -1,17 +1,23 @@
 $(window).on('load', function () {
-    setTimeout(function () {
-        $('#loading-screen').fadeOut('slow', function () {
-            $('body').css('overflow', 'auto'); // Bring back the scrollbar
-        });
-    }, 1000);
-    $('body').css('overflow', 'hidden'); // Hide the scrollbar
-});
+    // Simulate progress. Replace this with actual progress tracking.
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 1;
+        $('#loading-progress').text(progress + '%');
 
-$.ajax({
-    url: 'home.html',
-    type: 'GET',
-    success: function (data) {
-        // Replace body content with new content
-        $('body').html($(data).find('body').html());
-    }
+        if (progress >= 100) {
+            clearInterval(interval);
+
+            // Add jumping animation to each character
+            $('#loading-progress').each(function () {
+                $(this).addClass('jump');
+            });
+
+            setTimeout(function () {
+                $('#loading-screen').fadeOut('slow', function () {
+                    $('body').css('overflow', 'auto'); // Bring back the scrollbar
+                });
+            }, 1000);
+        }
+    }, 2);
 });

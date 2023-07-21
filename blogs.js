@@ -13,6 +13,13 @@ const blogs = [
         dat: "20/7/2023",
         content: "Hi! Again, this is just a test."
     },
+    {
+        id: 3,
+        title: 'Kayaking in Ha Long Bay',
+        description: 'No content',
+        dat: "21/7/2023",
+        content: "We haven't write this yet :\\",
+    }
 ];
 const blogList = document.getElementById('blog-list');
 
@@ -22,7 +29,7 @@ blogs.forEach(blog => {
                 <h5 class="card-title">${blog.title}</h5>
                 <p class="card-text">${blog.description}</p>
                 <p class="post-date">${blog.dat}</p>
-                <a href="blog.html?id=${blog.id}" class="btn btn-primary">Read More</a>
+                <a href="blog.html?id=${blog.id}" target="_blank" class="btn btn-primary">Read More</a>
             </li>
         `;
 

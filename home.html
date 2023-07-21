@@ -18,7 +18,7 @@
 <style>
     #scrolling-text::before {
         content: "";
-        background-image: url("https://img.traveltriangle.com/blog/wp-content/uploads/2017/05/Cover11.jpg"), url("https://img.traveltriangle.com/blog/wp-content/uploads/2017/05/Cover11.jpg");
+        background-image: url("images/cover.jpg"), url("images/cover.jpg");
         background-repeat: no-repeat, no-repeat;
         background-size: cover, cover;
         position: fixed;
@@ -77,6 +77,8 @@
             <div class="dot"></div>
             <div class="dot"></div>
         </div>
+        <div id="loading-progress"
+            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2em;">0%</div>
     </div>
     <header class="header">
         <div class="logo"><img src="logo.png" alt="logo" class="icon" style="cursor: pointer;"
@@ -100,13 +102,12 @@
                 We have plenty of them all over the world waiting for you to see!
             </p>
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><a href="vacations/halongbay.html" target="_blank">Ha Long Bay - Vietnam</a>
+                <li class="list-group-item"><a href="vacation.html?id=1" target="_blank">Ha Long Bay - Vietnam</a>
                 </li>
-                <li class="list-group-item"><a href="vacations/ilulissat.html" target="_blank">Ilulissat - Greenland</a>
+                <li class="list-group-item"><a href="vacation.html?id=2" target="_blank">Ilulissat - Greenland</a>
                 </li>
-                <li class="list-group-item"><a href="vacations/london.html" target="_blank">London - England</a></li>
-                <li class="list-group-item"><a href="vacations.html" target="_blank" style="font-size: small;">See
-                        more...</a></li>
+                <li class="list-group-item"><a href="vacation.html?id=3" target="_blank">London - England</a></li>
+                <li class="list-group-item"><a href="vacations.html" target="_blank">See more...</a></li>
             </ul>
         </div>
 

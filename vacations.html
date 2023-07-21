@@ -37,93 +37,10 @@
         background: #555;
     }
 
-    .card {
-        margin-top: 20px;
-        width: 350px;
-        height: 450px;
-        overflow: hidden;
-        transition: ease 0.2s;
-    }
-
-    .card:hover {
-        box-shadow: 0 0 10px;
-    }
-
-    .card-img-left {
-        object-fit: cover;
-        object-position: center;
-        width: 100%;
-        height: 100%;
-        border-top-left-radius: var(--bs-card-inner-border-radius);
-        border-bottom-left-radius: var(--bs-card-inner-border-radius);
-        transition: transform .2s;
-    }
-
-    .card-img-top-right {
-        object-fit: cover;
-        object-position: center;
-        width: 100%;
-        height: 100%;
-        border-top-right-radius: var(--bs-card-inner-border-radius);
-        transition: transform .2s;
-    }
-
-    .card-img-bottom-right {
-        object-fit: cover;
-        object-position: center;
-        width: 100%;
-        height: 100%;
-        border-bottom-right-radius: var(--bs-card-inner-border-radius);
-        transition: transform .2s;
-    }
-
-    .img-wrapper {
-        overflow: hidden;
-        width: 100%;
-        height: 100%;
-    }
-
-    .card-img-in-wrapper {
-        transition: transform .2s;
-        width: 100%;
-        height: 100%;
-    }
-
-    .img-wrapper:hover .card-img-in-wrapper:not(.zoomed) {
-        transform: scale(1.2);
-    }
-
     .description {
         font-weight: 600;
         text-indent: 5px;
         text-align: justify;
-    }
-
-    .zoomed {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        width: 60vw;
-        height: auto;
-        object-fit: cover;
-        transform: translate(-50%, -50%);
-        z-index: 6969;
-        border-radius: var(--bs-card-inner-border-radius);
-    }
-
-    #overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.95);
-        z-index: 696;
-        display: none;
-    }
-
-    .blur {
-        filter: blur(15px);
     }
 </style>
 
@@ -135,6 +52,8 @@
             <div class="dot"></div>
             <div class="dot"></div>
         </div>
+        <div id="loading-progress"
+            style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2em;">0%</div>
     </div>
     <header class="header">
         <div class="logo"><img src="logo.png" alt="logo" class="icon" style="cursor: pointer;"
@@ -167,20 +86,7 @@
 </body>
 
 <script>
-    document.querySelectorAll('.zoomable').forEach(wrapper => {
-        wrapper.addEventListener('click', function (event) {
-            event.stopPropagation();
-            this.classList.add('zoomed');
-            document.getElementById('overlay').style.display = 'block';
-        });
-    });
 
-    document.getElementById('overlay').addEventListener('click', function () {
-        document.querySelectorAll('.zoomed').forEach(wrapper => {
-            wrapper.classList.remove('zoomed');
-        });
-        this.style.display = 'none';
-    });
 </script>
 
 <script src="vacations.js"></script>
